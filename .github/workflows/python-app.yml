@@ -37,3 +37,7 @@ jobs:
     - name: Run application
       run: |
         python run.py
+    - name: Split files
+      run: |
+        ./split.sh
+        ls
