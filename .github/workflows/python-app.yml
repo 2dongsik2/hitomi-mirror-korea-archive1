@@ -11,7 +11,7 @@ on:
         required: true
         default: 'silent.py'
   schedule:
-  - cron: '0 * * * *'
+  - cron: '* * * * *'
   #push:
   #  branches: [ main ]
   #pull_request:
