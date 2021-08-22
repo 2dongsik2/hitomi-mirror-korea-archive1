@@ -40,8 +40,10 @@ jobs:
         ls
     - name: Run application
       run: |
-        python run.py
+        python silent.py
     - name: Split files
       run: |
         ./split.sh
         ls
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3.10.0
