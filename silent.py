@@ -2,6 +2,8 @@ import requests
 import os
 import sqlite3
 import json
+from datetime import datetime
+from pytz import timezone
 
 db_filename = 'data.db'
 schema_filename = 'data_schema.sql'
@@ -125,3 +127,6 @@ for i in range(len(nums)):
 conn.commit()
 files_conn.commit()
 
+with open('latest.log', 'w', encoding='utf-8') as file:
+  date = datetime.now(timezone('Asia/Seoul'))
+  file.write(str(date))
