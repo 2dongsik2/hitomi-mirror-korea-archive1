@@ -37,7 +37,7 @@ jobs:
         ./merge.sh
     - name: Run application
       run: |
-        python ${{ github.event.inputs.logLevel || "silent.py" }}
+        python ${{ github.event.inputs.logLevel || 'silent.py' }}
     - name: Split files
       run: |
         ./split.sh
