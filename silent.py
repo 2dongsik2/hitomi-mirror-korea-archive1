@@ -16,6 +16,8 @@ files_db_is_new = not os.path.exists(files_db_filename)
 conn = sqlite3.connect(db_filename)
 files_conn = sqlite3.connect(files_db_filename)
 
+logs = ""
+
 if db_is_new:
   with open(schema_filename, 'rt') as f:
     schema = f.read()
@@ -26,7 +28,7 @@ if files_db_is_new:
   files_conn.executescript(schema)
 
 def write_date():
-  with open('latest.log', 'w', encoding='utf-8') as file:
+  with open('latest.date', 'w', encoding='utf-8') as file:
     date = datetime.now(timezone('Asia/Seoul'))
     file.write(str(date))
 def numbers():
@@ -128,6 +130,9 @@ for i in range(len(nums)):
     conn.commit()
     files_conn.commit()
   write_date()
+  logs += data["id"] + "\n"
   print(data["id"])
 conn.commit()
 files_conn.commit()
+with open('latest.log', 'w', encoding='utf-8') as file:
+  file.write(logs)
