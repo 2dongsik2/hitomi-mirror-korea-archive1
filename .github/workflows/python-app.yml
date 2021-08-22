@@ -7,13 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: 'Person to greet'
+        description: 'application path'
         required: true
-        default: 'Mona the Octocat'
-      home:
-        description: 'location'
-        required: false
-        default: 'The Octoverse'
+        default: 'silent.py'
   schedule:
   - cron: '0 * * * *'
   #push:
@@ -41,7 +37,7 @@ jobs:
         ./merge.sh
     - name: Run application
       run: |
-        python silent.py
+        python ${{ github.event.inputs.logLevel || "silent.py" }}
     - name: Split files
       run: |
         ./split.sh
