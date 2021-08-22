@@ -25,6 +25,10 @@ if files_db_is_new:
     schema = f.read()
   files_conn.executescript(schema)
 
+def write_date():
+  with open('latest.log', 'w', encoding='utf-8') as file:
+    date = datetime.now(timezone('Asia/Seoul'))
+    file.write(str(date))
 def numbers():
   url = "https://ltn.hitomi.la/index-korean.nozomi"
   res = requests.get(url)
@@ -123,10 +127,7 @@ for i in range(len(nums)):
   if i % 100 == 0:
     conn.commit()
     files_conn.commit()
+  write_date()
   print(data["id"])
 conn.commit()
 files_conn.commit()
-
-with open('latest.log', 'w', encoding='utf-8') as file:
-  date = datetime.now(timezone('Asia/Seoul'))
-  file.write(str(date))
