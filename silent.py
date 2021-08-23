@@ -134,5 +134,6 @@ for i in range(len(nums)):
   print(data["id"])
 conn.commit()
 files_conn.commit()
-with open('latest.log', 'w', encoding='utf-8') as file:
-  file.write(logs)
+if logs != "":
+  with open('latest.log', 'w', encoding='utf-8') as file:
+    file.write(logs)
